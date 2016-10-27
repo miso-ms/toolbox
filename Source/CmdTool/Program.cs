@@ -4,16 +4,35 @@ using CmdTool;
 
 namespace CmdTool
 {
-    [Command("test")]
-    [Description("This is a simple test class with some arguments.")]
+    [CmdTool("test")]
+    [CmdDescription("This is a simple test class with some arguments.")]
+    [CmdDescription("usage: TestCommand1 [<options] <directory>")]
     class TestCommand
     {
         [Option("-v", "Verbose flag", true)]
-        private const bool Verbose = false;
+        public const bool Verbose = false;
 
         public void Run()
         {
             Console.WriteLine(Verbose);
+        }
+    }
+
+    [CmdTool("test2")]
+    [CmdDescription("hello weird c# features")]
+    [CmdDescription("usage: TestCommand2 [<options] <directory>")]
+    class TestCommand2
+    {
+        [Option("-v", "Verbose flag", true)]
+        public const bool Verbose = false;
+
+        [Option("-r", "res", true)]
+        public const bool Retry = false;
+
+        public void Run()
+        {
+            Console.WriteLine(Verbose);
+            Console.WriteLine(Retry);
         }
     }
 
@@ -22,12 +41,13 @@ namespace CmdTool
     /// </summary>
     class Program
     {
-
         static int Main(string[] args)
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("No arguments found, use -help for instructions.");
+                Console.WriteLine(Load.GetHelp());
+                Console.WriteLine(Load.GetHelp("test2"));
+                Console.ReadLine();
                 return 0;
             }
 
