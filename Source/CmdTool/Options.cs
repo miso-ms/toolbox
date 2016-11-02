@@ -8,7 +8,7 @@ namespace CmdTool
     /// Public class members represent flag options. Must also provide usage,
     /// option, and description attribute.
     /// Ex.
-    /// 
+    ///
     /// [CmdTool("...")]
     /// [Description("...")]
     /// [Description("..."]
@@ -19,14 +19,11 @@ namespace CmdTool
     ///     public bool Flag = false;
     ///     ...
     /// }
-    /// 
+    ///
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class CmdTool : Attribute
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public string Command { get; private set; }
 
         public CmdTool(string command)
@@ -38,9 +35,7 @@ namespace CmdTool
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class CmdDescription : Attribute
     {
-
         public string Description { get; private set; }
-
 
         public CmdDescription(string description)
         {
@@ -53,13 +48,11 @@ namespace CmdTool
     {
         public string Command { get; private set; }
         public string Description { get; private set; }
-        public bool Required { get; private set; }
 
-        public Option(string command, string description, bool required)
+        public Option(string command, string description)
         {
             Command = command;
             Description = description;
-            Required = required;
         }
     }
 }
